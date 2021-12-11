@@ -1,0 +1,157 @@
+#!/bin/sh
+
+# clang -o sixteen_in sixteen_in.c
+# echo === Running Tests ===
+# echo $(./sixteen_in 0000000000000000)
+# echo 0
+# echo
+# echo $(./sixteen_in 0000000000000001)
+# echo 1
+# echo
+# echo $(./sixteen_in 1111111111111111)
+# echo -1
+# echo
+# echo $(./sixteen_in 0011001100110011)
+# echo 13107
+# echo
+# echo $(./sixteen_in 1111000011110000)
+# echo -3856
+# echo
+
+# clang sixteen_out.c -o sixteen_out
+# echo === Running Tests ===
+# echo $(./sixteen_out 0)
+# echo 0000000000000000
+# echo
+# echo $(./sixteen_out -1)
+# echo 1111111111111111
+# echo
+# echo $(./sixteen_out 13107)
+# echo 0011001100110011
+# echo
+# echo $(./sixteen_out -3856)
+# echo 1111000011110000
+# echo
+# echo $(./sixteen_out 100)
+# echo 0000000001100100
+# echo
+
+# clang bcd.c -o bcd
+# echo === Running Tests ===
+# echo $(./bcd 7)
+# echo 7
+# echo
+# echo $(./bcd 258)   # 258 == 0x0102
+# echo 12
+# echo
+# echo $(./bcd 1026)  # 1026 == 0x0402
+# echo 42
+# echo
+
+# clang packed_bcd.c -o packed_bcd
+# echo === Running Tests ===
+# echo $(./packed_bcd 66)         # 66 = 0x42
+# echo 42
+# echo
+# echo $(./packed_bcd 39321)      # 39321 == 9999
+# echo 9999
+# echo
+# echo $(./packed_bcd 1111638594) # 1111638594 == 0x42424242
+# echo 42424242
+# echo
+# echo $(./packed_bcd 2415919104)
+# echo 90000000
+# echo
+# echo $(./packed_bcd 2576980377)
+# echo 99999999
+# echo
+
+# clang bcd_add.c -o bcd_add
+# echo === Running Tests ===
+# echo $(./bcd_add 123456789123456789 123456789123456789)
+# echo 246913578246913578
+# echo
+# echo $(./bcd_add 999999999999999999 1)
+# echo 1000000000000000000
+# echo
+# echo $(./bcd_add 777777777777777777777777777777777777 888888888888888888888888888888888888)
+# echo 1666666666666666666666666666666666665
+# echo
+# echo $(./bcd_add 987654321987654321987654321 98765987659876598765)
+# echo 987654420753641981864253086 
+# echo
+# echo $(./bcd_add 1000000000000000000000000 12345)
+# echo 1000000000000000000012345
+# echo
+# echo $(./bcd_add 6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666 4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444)
+# echo 11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110
+# echo
+# echo $(./bcd_add 0 0)
+# echo 0
+# echo
+# echo $(./bcd_add 1 0)
+# echo 1
+# echo
+
+clang bcd_arithmetic.c -o bcd_arithmetic
+echo === Running Tests ===
+echo $(./bcd_arithmetic 1123456789123456789 - 1123456789123456788)
+echo 1
+echo
+echo $(./bcd_arithmetic 1123456789123456780 - 1)
+echo 1123456789123456779
+echo
+echo $(./bcd_arithmetic 1000000000000000000000000 - 12345)
+echo 999999999999999999987655
+echo
+echo $(./bcd_arithmetic 1 - 1)
+echo 0
+echo
+echo $(./bcd_arithmetic 1 - 0)
+echo 1
+echo
+echo $(./bcd_arithmetic 3 - 2)
+echo 1
+echo
+# echo $(./bcd_arithmetic 11 '*' 2)
+# echo 22
+# echo
+# echo $(./bcd_arithmetic 11 '*' 11)
+# echo 121
+# echo
+# echo $(./bcd_arithmetic 8 '*' 20)
+# echo 160
+# echo
+# echo $(./bcd_arithmetic 8 '*' 0)
+# echo 0
+# echo
+# echo $(./bcd_arithmetic 9275920900009999112351 '*' 1451)
+# echo 13459361225914508712021301
+# echo
+# echo $(./bcd_arithmetic 8 '*' 1)
+# echo 8
+# echo
+# echo $(./bcd_arithmetic 1 '*' 8)
+# echo 8
+# echo
+# echo $(./bcd_arithmetic 1 '*' 1)
+# echo 1
+# echo
+# echo $(./bcd_arithmetic 9007199254740993 '*' 1)
+# echo 9007199254740993
+# echo
+# echo $(./bcd_arithmetic 42 '*' 24)
+# echo 1008
+# echo
+# echo $(./bcd_arithmetic 123456789123456789 '*' 123456789123456789)
+# echo 15241578780673678515622620750190521
+# echo
+# echo $(./bcd_arithmetic 15241578780673678515622620750190521 / 123456789123456789)
+# echo 123456789123456789
+# echo
+# echo $(./bcd_arithmetic 123456789 '*' 987654321 +  987654321 / 1234)
+# echo 121932631113435637
+# echo
+# echo $(./bcd_arithmetic 14 / 5)
+# echo 2
+# echo
